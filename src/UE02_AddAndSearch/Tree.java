@@ -9,13 +9,45 @@ public class Tree {
         //Knoten erstellen
         Node newNode = new Node(number);
 
-        //addLoop(root, newNode);
+        //VARIANTE LOOP
+        //addLoop(newNode);
 
+        //VARIANTE REKURSION
+        //Fall: Baum noch leer:
+        if (root == null) {
+            root = newNode;
+        }
+        //wenn nicht leer:
+        else {
+            addRecursive(root, newNode);
+        }
     }
 
     // Add - Variante Rekursion
     private void addRecursive(Node currentNode, Node newNode) {
-        // TODO
+
+        //entweder so oder so, aufpassen beim schreiben!!!
+        //if (currentNode.getNumber() > newNode.getNumber())
+        //neuer wert kleiner:
+        if (newNode.getNumber() < currentNode.getNumber()) {
+            //fall: links ist schon ein Knoten
+            if (currentNode.getLeft() != null) {
+                //Rekursion mit linkem Knoten weiterführen
+                addRecursive(currentNode.getLeft(), newNode);
+            } else {
+                currentNode.setLeft(newNode);
+                newNode.setParent(currentNode);
+            }
+        }//neuer wert größer
+        else {
+            if (currentNode.getRight() != null) {
+                //Rekursion mit rechtem Knoten weiterführen
+                addRecursive(currentNode.getRight(), newNode);
+            } else {
+                currentNode.setRight(newNode);
+                newNode.setParent(currentNode);
+            }
+        }
     }
 
     // Add - Variante Loop
