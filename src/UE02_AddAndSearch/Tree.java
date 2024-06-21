@@ -94,21 +94,41 @@ public class Tree {
 
             // TODO: Entweder Variante 1 oder 2 einkommentieren
             // Variante 1: Aufruf Rekursiv
-            return searchNumberRecursive(root, number);
+            //return searchNumberRecursive(root, number);
             // Variante 2: Aufruf Schleife
-            //return searchNumberLoop(number);
+            return searchNumberLoop(number);
         }
 
         // Suche - Variante Rekursion
         private Node searchNumberRecursive (Node currentNode,int number){
-            // TODO
-            return null;
+
+            if (currentNode.getNumber() == number) {
+                return currentNode;
+            }
+
+            if (number < currentNode.getNumber()) {
+                return searchNumberRecursive(currentNode.getLeft(), number);
+            }
+            else {
+                return searchNumberRecursive(currentNode.getRight(), number);
+            }
         }
+
 
         // Suche - Variante Schleife
         private Node searchNumberLoop ( int number){
-            // TODO
-            return null;
+
+            Node current = root;
+
+            while (current != null && current.getNumber() != number) {
+                if (number < current.getNumber()) {
+                    current = current.getLeft();
+
+                } else {
+                    current = current.getRight();
+                }
+            }
+            return current;
         }
 
         /**
