@@ -94,10 +94,10 @@ public class Tree {
         System.out.print("SearchNumber - ");
 
         // Variante 1: Aufruf Rekursiv
-        // return searchNumberRecursive(root, number);
+        return searchNumberRecursive(root, number);
 
         // Variante 2: Aufruf Schleife
-        return searchNumberLoop(number);
+        // return searchNumberLoop(number);
     }
 
     // Suche - Variante Rekursion
@@ -107,7 +107,7 @@ public class Tree {
             return currentNode; // Knoten zurückgeben
         }
         // Wert ist kleiner, links weiter suchen
-        if (number < currentNode.getNumber()) {
+        else if (currentNode.getNumber() > number) {
             return searchNumberRecursive(currentNode.getLeft(), number);
         }
         // Wert ist größer, rechts weiter suchen
@@ -121,12 +121,19 @@ public class Tree {
         Node current = root;
         // Schleife durchlaufen bis der Knoten gefunden wird oder null ist
         while (current != null && current.getNumber() != number) {
-            if (number < current.getNumber()) {
-                current = current.getLeft();
-            } else {
+            //Fall: Knoten gefunden
+            if (current.getNumber() == number) {
+                return current;
+            }
+            //Gesuchter Wert ist größer als der aktuelle Knoten. Rechts weiter
+            else if (current.getNumber() < number) {
                 current = current.getRight();
+            //Gesuchter Wert ist kleiner als der aktuelle Knoten. Links weiter
+            } else {
+                current = current.getLeft();
             }
         }
+        //return null geht auch
         return current; // Knoten zurückgeben oder null, wenn nicht gefunden
     }
 

@@ -20,7 +20,7 @@ public class Test
 
         // Knoten suchen und Wert ausgeben
         Node foundNode = null;
-        foundNode = tree.searchNumber(80);  // Wert kann ausgetauscht werden
+        foundNode = tree.searchNumber(40);  // Wert kann ausgetauscht werden
         if (foundNode != null)
             System.out.println("FoundNode: " + foundNode.getNumber());
         else
